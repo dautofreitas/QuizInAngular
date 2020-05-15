@@ -2,13 +2,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { MenuComponent } from './navegacao/menu/menu.component';
+import { HomeComponent } from './navegacao/home/home.component';
+import { FooterComponent } from './navegacao/footer/footer.component';
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    MenuComponent
+   MenuComponent,
+   HomeComponent,
+   FooterComponent,
+   AppComponent
   ],
   imports: [
     BrowserModule,
