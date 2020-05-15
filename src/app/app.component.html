@@ -39,40 +39,54 @@
 
   <div class="container mt-5">
     <div class="row justify-content-md-center">
-      <div class="card  col-sm-8">
+      <div class="card  col-sm-8" [ngClass]="{'text-center': telaInicial}">
 
         <div class="card-body">
-          <h5 class="card-title ">Qual a mais velha banda de rock gospel do Brasil ?</h5>
+          <h5 *ngIf="telaInicial else pergunta" class="card-title ">Iniciar o Quiz</h5>
+
+          <ng-template #pergunta>
+            <h5 class="card-title ">Qual a mais velha banda de rock gospel do Brasil ?</h5>
+          </ng-template>
+
           <hr>
+          <div *ngIf="!telaInicial">
+            <div class="form-check mt-3">
+              <input class="form-check-input" type="checkbox" value="" id="respota1">
+              <label class="form-check-label" for="respota1">
+                Catedral
+              </label>
+            </div>
 
-          <div class="form-check mt-3">
-            <input class="form-check-input" type="checkbox" value="" id="respota1">
-            <label class="form-check-label" for="respota1">
-              Catedral
-            </label>
+            <div class="form-check mt-3">
+              <input class="form-check-input" type="checkbox" value="" id="respota2">
+              <label class="form-check-label" for="respota2">
+                Khorus
+              </label>
+            </div>
+
+            <div class="form-check mt-3">
+              <input class="form-check-input" type="checkbox" value="" id="respota3">
+              <label class="form-check-label" for="respota3">
+                Catedral
+              </label>
+            </div>
+
+            <div class="form-check mt-3">
+              <input class="form-check-input" type="checkbox" value="" id="respota4">
+              <label class="form-check-label" for="respota4">
+                Novo Som
+              </label>
+            </div>
           </div>
 
-          <div class="form-check mt-3">
-            <input class="form-check-input" type="checkbox" value="" id="respota2">
-            <label class="form-check-label" for="respota2">
-              Khorus
-            </label>
-          </div>
+          <a *ngIf="telaInicial else proximo" href="#" class="btn btn-primary  mt-3">Iniciar Quiz</a>
+          
 
-          <div class="form-check mt-3">
-            <input class="form-check-input" type="checkbox" value="" id="respota3">
-            <label class="form-check-label" for="respota3">
-              Catedral
-            </label>
-          </div>
+          <ng-template #proximo>
+            <a href="#" class="btn btn-primary  mt-3">Próximo</a>
+          </ng-template>
 
-          <div class="form-check mt-3">
-            <input class="form-check-input" type="checkbox" value="" id="respota4">
-            <label class="form-check-label" for="respota4">
-              Novo Som
-            </label>
-          </div>
-          <a href="#" class="btn btn-primary mt-3">Próximo</a>
+
         </div>
 
       </div>
