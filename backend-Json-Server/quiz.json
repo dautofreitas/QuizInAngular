@@ -1,0 +1,39 @@
+{
+  "quiz": [
+    {
+      "id": 1,
+      "pergunta": "uma pergunta 001 ",
+      "respostas": [
+        {
+          "titulo": "Pc 001",
+          "correta": true
+        },
+        {
+          "titulo": "Pc 002",
+          "correta": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "pergunta": "uma pergunta",
+      "respostas": [
+        {
+          "titulo": "Pc 001",
+          "correta": true
+        },
+        {
+          "titulo": "Pc 002",
+          "correta": false
+        }
+      ]
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ]
+}
