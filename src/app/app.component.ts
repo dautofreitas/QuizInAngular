@@ -12,5 +12,10 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.telaInicial = true;
   }
+
+  inicarQuiz():void
+  {
+    this.telaInicial = false;
+  }
   
 }

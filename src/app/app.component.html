@@ -79,7 +79,7 @@
             </div>
           </div>
 
-          <a *ngIf="telaInicial else proximo" href="#" class="btn btn-primary  mt-3">Iniciar Quiz</a>
+          <a *ngIf="telaInicial else proximo" href="#" (click)="inicarQuiz()" class="btn btn-primary  mt-3">Iniciar Quiz</a>
           
 
           <ng-template #proximo>
