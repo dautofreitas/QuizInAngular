@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
   title = 'QuizInAngular';
   telaInicial:boolean = false;
 
-  quiz:Quiz[] = [];
+  quiz:Quiz;
 
   
 
@@ -19,15 +19,14 @@ export class AppComponent implements OnInit {
     
     
     this.telaInicial = true;
-    let novoQuiz: Quiz = new Quiz();
+    this.quiz = new Quiz();
 
     let respostas:Resposta[] = [{titulo:"Pc 001", correta:true}, {titulo:"Pc 002", correta:false}];
 
 
-    novoQuiz.respostas = respostas;
-    novoQuiz.pergunta = "uma pergunta";
+    this.quiz.respostas = respostas;
+    this.quiz.pergunta = "uma pergunta";
 
-    this.quiz.push(novoQuiz);
   }
 
   inicarQuiz():void
