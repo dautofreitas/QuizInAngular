@@ -45,13 +45,13 @@
           <h5 *ngIf="telaInicial else pergunta" class="card-title ">Iniciar o Quiz</h5>
 
           <ng-template #pergunta>
-            <h5 class="card-title ">{{quiz.pergunta}}</h5>
+            <h5 class="card-title ">{{quizAtual.pergunta}}</h5>
           </ng-template>
 
           <hr>
           
           <div *ngIf="!telaInicial">
-            <div *ngFor="let resposta of quiz.respostas">
+            <div *ngFor="let resposta of quizAtual.respostas">
               <div class="form-check mt-3">
                 <input [(ngModel)]="resposta.selecionada" [disabled]="desabilitaSelecao() && !resposta.selecionada" class="form-check-input" type="checkbox" value="" id="respota1">              
                 
