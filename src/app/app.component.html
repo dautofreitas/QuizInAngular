@@ -38,42 +38,59 @@
   </nav>
 
   <div class="container mt-5">
-    <div class="row justify-content-md-center">
-      <div class="card  col-sm-8" [ngClass]="{'text-center': telaInicial}">
+    <div [ngSwitch]="tela" class="row justify-content-md-center">
+      <!--Perguntas -->
+      <div *ngSwitchCase="'pergunta'" class="card  col-sm-8" >
 
         <div class="card-body">
-          <h5 *ngIf="telaInicial else pergunta" class="card-title ">Iniciar o Quiz</h5>
-
-          <ng-template #pergunta>
-            <h5 class="card-title ">{{quizAtual.pergunta}}</h5>
-          </ng-template>
-
+          
+          <h5 class="card-title ">{{quizAtual.pergunta}}</h5>
           <hr>
-          
-          <div *ngIf="!telaInicial">
-            <div *ngFor="let resposta of quizAtual.respostas">
-              <div class="form-check mt-3">
-                <input [(ngModel)]="resposta.selecionada" [disabled]="desabilitaSelecao() && !resposta.selecionada" class="form-check-input" type="checkbox" value="" id="respota1">              
-                
-                <label class="form-check-label" for="respota1">
-                  {{resposta.titulo}}
-                </label>                
-              </div>
-            </div>            
+          <div *ngFor="let resposta of quizAtual.respostas">
+            <div class="form-check mt-3">
+              <input [(ngModel)]="resposta.selecionada" [disabled]="desabilitaSelecao() && !resposta.selecionada" class="form-check-input" type="checkbox" value="" id="respota1">              
+              
+              <label class="form-check-label" for="respota1">
+                {{resposta.titulo}}
+              </label>                
+            </div>
           </div>
-
-          <a *ngIf="telaInicial else proximo" href="#" (click)="inicarQuiz()" class="btn btn-primary  mt-3">Iniciar Quiz</a>
           
+          <a href="#" (click)="proximaPergunta()" class="btn btn-primary  mt-3">Próximo</a>
+         
+        </div>
 
-          <ng-template #proximo>
-            <a href="#" (click)="proximaPergunta()" class="btn btn-primary  mt-3">Próximo</a>
-          </ng-template>
+      </div>
+      <!--Perguntas -->
 
+      <!--Resultado -->
+      <div *ngSwitchCase="'resultado'" class="card  col-sm-8 ">
+
+        <div class="card-body">
+          <h5 class="card-title ">Resultado</h5>
+          <hr>
+          <p class="mt-3 mb-3" >Tempo levado em Segundos: {{resultadoQuiz.duracaoEmMs|number:'1.2-2' }}</p>
+          <p class="mt-3 mb-3">Quantidade de acertos: {{this.resultadoQuiz.quatidadeAcertos }}</p>
+          <p class="mt-3 mb-3">Quantidade de erros: {{resultadoQuiz.quatidadeErros }}</p>
+          
+          <a href="#" (click)="reiniciarQuiz()" class="btn btn-primary  mt-3">Voltar ao Inicio</a>
+          
 
         </div>
 
       </div>
+      <!--Resultado -->
+      <!--Tela Inicial  -->
+      <div *ngSwitchDefault class="card  col-sm-8 text-center" >
 
+        <div class="card-body">
+          <h5 class="card-title ">Iniciar o Quiz</h5>
+          <hr>
+          <a href="#" (click)="inicarQuiz()" class="btn btn-primary  mt-3">Iniciar Quiz</a>          
+        </div>
+
+      </div>
+       <!--Tela Inicial  -->
     </div>
   </div>
 

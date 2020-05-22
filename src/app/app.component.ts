@@ -11,25 +11,24 @@ import { Data } from '@angular/router';
 export class AppComponent implements OnInit {
 
   title = 'QuizInAngular';
-  telaInicial: boolean = false;
+  tela: string;
   listaQuiz: Quiz[] = [];
   quizAtual: Quiz;
   dataInicio: Date;
   checkButton: boolean = false;
-  contadorProximaPergunta: number = 0;
+  contadorProximaPergunta: number;
   resultadoQuiz: ResultadoQuiz = new ResultadoQuiz();
 
 
   ngOnInit(): void {
 
 
-    this.telaInicial = true;
     let quiz = new Quiz();
-
-
+    this.tela="";
+    this.contadorProximaPergunta=0;
 
     let respostas: Resposta[] = [{ titulo: "Ré", correta: false, selecionada: false }, { titulo: "Mi", correta: false, selecionada: false },
-    { titulo: "Fá", correta: false, selecionada: false }, { titulo: "Dó", correta: false, selecionada: false }];
+    { titulo: "Fá", correta: false, selecionada: false }, { titulo: "Dó", correta: true, selecionada: false }];
 
     quiz.respostas = respostas;
     quiz.pergunta = "Nos acordes de guitarra, o acorde C significa?";
@@ -46,7 +45,8 @@ export class AppComponent implements OnInit {
   }
 
   inicarQuiz(): void {
-    this.telaInicial = false;
+
+    this.tela = "pergunta";
     this.quizAtual = this.listaQuiz[this.contadorProximaPergunta];
     console.log(this.quizAtual);
 
@@ -76,7 +76,7 @@ export class AppComponent implements OnInit {
   }
 
  finalizaQuiz(): void {
-    this.resultadoQuiz.duracaoEmMs = new Date().getTime() - this.dataInicio.getTime();
+    this.resultadoQuiz.duracaoEmMs = (new Date().getTime() - this.dataInicio.getTime())/1000;
     this.resultadoQuiz.quatidadeAcertos = this.listaQuiz.filter(quiz =>
       quiz.respostas.filter(resposta => resposta.correta && resposta.selecionada).length>0).length;
 
@@ -86,6 +86,12 @@ export class AppComponent implements OnInit {
         resposta => !resposta.correta && resposta.selecionada).length>0).length;
     
         console.log(JSON.stringify({ data: this.resultadoQuiz }, null, 4)); 
+    
+    this.tela = "resultado";
   }
 
+  reiniciarQuiz()
+  {
+    this.ngOnInit();
+  }
 }
