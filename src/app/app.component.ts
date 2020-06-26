@@ -1,3 +1,4 @@
+import { QuizService } from './quiz.service';
 import { ResultadoQuiz } from './resultadoQuiz';
 import { Quiz, Resposta } from './quiz';
 import { Component, OnInit } from '@angular/core';
@@ -9,6 +10,8 @@ import { Data } from '@angular/router';
   templateUrl: 'app.component.html'
 })
 export class AppComponent implements OnInit {
+
+  constructor(private quizService: QuizService){}
 
   title = 'QuizInAngular';
   tela: string;
@@ -22,11 +25,17 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
 
-
-    let quiz = new Quiz();
     this.tela="";
     this.contadorProximaPergunta=0;
 
+    this.quizService.obterQuiz().subscribe(
+      quiz => {
+        this.listaQuiz = quiz;
+        console.log( this.listaQuiz);
+      },
+      error => {console.log(error);}
+    )
+/*
     let respostas: Resposta[] = [{ titulo: "Ré", correta: false, selecionada: false }, { titulo: "Mi", correta: false, selecionada: false },
     { titulo: "Fá", correta: false, selecionada: false }, { titulo: "Dó", correta: true, selecionada: false }];
 
@@ -41,7 +50,7 @@ export class AppComponent implements OnInit {
     this.listaQuiz[2].pergunta = "Nos acordes de guitarra, o acorde C significa? 02";
     this.listaQuiz[3] = JSON.parse(JSON.stringify(quiz));
     this.listaQuiz[3].pergunta = "Nos acordes de guitarra, o acorde C significa? 03";
-
+*/
   }
 
   inicarQuiz(): void {

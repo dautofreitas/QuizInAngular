@@ -1,5 +1,6 @@
 export class Quiz
 {
+    id:number;
     pergunta:string;
     respostas:Resposta[];
     quantidadeAcertosAprovacao:number;
